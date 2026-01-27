@@ -1,0 +1,49 @@
+WebHunt – plný popis projektu, fungování kvízu a správné odpovědi
+
+1. Celkové fungování kvízu
+- Hra je postavená na 6 samostatných misích + povinném tutoriálu.
+- Každá mise je samostatná HTML stránka (mission1.html až mission6.html).
+- Progress (dokončené mise + skóre) se ukládá do localStorage (klíč: webhunt_progress).
+- Po splnění mise: alert "Správně! +X bodů", mise se označí jako dokončená, progress se aktualizuje.
+- Po špatné odpovědi: hláška "Špatně... zkuste znovu".
+- Po dokončení všech 6 misí: automatické přesměrování na victory.html.
+- Na victory.html: zobrazení celkového skóre + tlačítko "Hrát znovu" (resetuje localStorage).
+
+2. Správné odpovědi na mise
+
+Mise 1: Hlavní výhoda webových aplikací
+Správná odpověď: Nižší náklady na vývoj a údržbu + rychlé nasazení změn
+   (index 1 v radio tlačítkách – "Jedna verze aplikace stačí pro všechny platformy...")
+
+Mise 2: SPA vs MPA
+Správná odpověď: SPA (Single-Page Application)
+   (index 1 – "SPA (Single-Page Application)")
+
+Mise 3: Co dělá PWA výjimečnou?
+Správné klíčové funkce (alespoň 2 z těchto):
+   - offline režim / fungují offline
+   - push notifikace / notifikace
+   - instalace na plochu / na home screen / installable
+   (kontrola na klíčová slova – stačí zmínit jednu nebo více)
+
+Mise 4: Nižší náklady na vývoj
+Správná odpověď: Jedna verze aplikace stačí pro všechny platformy (PC, iOS, Android) + žádné schvalování v App Store / Google Play
+   (index 1 v radio tlačítkách)
+
+Mise 5: Aktualizace online
+Správný princip:
+   Změna proběhne na serveru → je okamžitě / automaticky dostupná všem uživatelům bez nutnosti ruční aktualizace u uživatelů.
+   Klíčová slova: server, automaticky, okamžitě, všem, bez stahování, nasazení změn
+
+Mise 6: Kompatibilita a dostupnost
+Správná volba: Na PC, tabletu, mobilu – bez ohledu na OS (Windows, macOS, iOS, Android, Linux)
+   (index 1 v radio tlačítkách)
+Správné vysvětlení (alespoň částečně):
+   Jedna verze funguje všude, šetří čas/náklady vývojářům, zvyšuje dostupnost pro uživatele, bez ohledu na zařízení/OS/prohlížeč.
+   Klíčová slova: zařízení, platformy, OS, bez ohledu, všechny, kompatibilita, šetří, čas, náklady, jedna verze
+
+Poznámky k implementaci
+- Kontrola odpovědí je zjednodušená – není 100% přesná, ale dostačující pro středoškoláky.
+- Body misí: 100–160.
+- Po dokončení mise se automaticky aktualizuje progress bar a skóre na všech stránkách.
+- Reset hry: tlačítko na victory.html maže localStorage a vrací na index.html.

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebHunt - Mise 05</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="header">
+    <h1 class="title glow">WebHunt</h1>
+    <p class="subtitle">Mise 05: Aktualizace online</p>
+    
+    <div class="progress-info">
+      <span id="progress-text" class="progress-count">0 / 6</span>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="score"><i class="fas fa-star"></i> Skóre: <span id="score">0</span></div>
+    </div>
+  </div>
+
+  <main class="mission-content">
+    <h2 class="glow"><i class="fas fa-sync-alt"></i> Mise 05: Aktualizace online</h2>
+    
+    <p>Někdo říká: „Když udělám změnu ve webové aplikaci, musím ji ručně aktualizovat u každého uživatele.“ Co je na tom špatně? Napiš správný postup podle tutoriálu.</p>
+    
+    <p style="margin: 16px 0; color: #a5d6ff; font-style: italic;">
+      Nápověda: Zamysli se nad tím, kde se aplikace nachází a jak se změny šíří.
+    </p>
+
+    <textarea id="answer-input" placeholder="Správně je... (např. Změna na serveru → okamžitě dostupná všem...)" style="width:100%; height:180px; margin:20px 0; padding:15px; background:#161b22; color:#c9d1d9; border:1px solid #30363d; border-radius:8px; font-family:monospace; resize:vertical;"></textarea>
+
+    <button id="check-btn" class="start-btn glow-btn">Odeslat odpověď</button>
+    
+    <div id="result" style="margin-top: 30px; font-size: 1.2rem; min-height: 40px;"></div>
+
+    <div style="margin-top: 50px; text-align: center;">
+      <button class="start-btn glow-btn" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Zpět na přehled
+      </button>
+    </div>
+  </main>
+
+  <script src="js/shared.js"></script>
+  <script>
+    // Lokální logika pro tuto misi
+    const correctKeywords = [
+      'server', 'serveru', 'na serveru', 
+      'automaticky', 'automatické', 'okamžitě', 'ihned', 
+      'všem', 'všem uživatelům', 'uživatelům', 
+      'bez stahování', 'bez aktualizace', 'bez ručního', 
+      'nasazení', 'nasadit', 'změna na serveru'
+    ];
+    const points = 150;
+    const missionId = 5;
+
+    document.getElementById('check-btn').addEventListener('click', () => {
+      const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+      
+      if (userAnswer.length < 15) {
+        document.getElementById('result').innerHTML = '<span style="color: #ff6b6b;">Napiš podrobněji – vysvětli, kde se změna provede a jak se dostane k uživatelům.</span>';
+        return;
+      }
+
+      const isCorrect = correctKeywords.some(keyword => userAnswer.includes(keyword));
+      
+      if (isCorrect) {
+        document.getElementById('result').innerHTML = '<span style="color: #39d353;">Správně! Změna proběhne na serveru a je okamžitě dostupná všem uživatelům bez jakéhokoli zásahu. +150 bodů 🔥</span>';
+        completeMission(missionId, points);
+        document.getElementById('check-btn').disabled = true;
+      } else {
+        document.getElementById('result').innerHTML = '<span style="color: #ff6b6b;">Špatně... Připomeň si, že u webových aplikací se vše děje na serveru, ne u uživatelů 🐛</span>';
+      }
+    });
+  </script>
+</body>
+</html>
