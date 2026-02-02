@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebHunt - Mise 04</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="header">
+    <h1 class="title glow">WebHunt</h1>
+    <p class="subtitle">Mise 04: Nižší náklady na vývoj</p>
+    
+    <div class="progress-info">
+      <span id="progress-text" class="progress-count">0 / 6</span>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="score"><i class="fas fa-star"></i> Skóre: <span id="score">0</span></div>
+    </div>
+  </div>
+
+  <main class="mission-content">
+    <h2 class="glow"><i class="fas fa-coins"></i> Mise 04: Proč webové aplikace šetří peníze?</h2>
+    
+    <p>Podle tutoriálu – proč webové aplikace šetří až 50–70 % nákladů a času oproti nativním aplikacím?</p>
+    
+    <div class="options" style="margin: 30px 0; display: flex; flex-direction: column; gap: 15px;">
+      <label class="option">
+        <input type="radio" name="answer" value="0"> Protože mají lepší 3D grafiku a animace
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="1"> Jedna verze aplikace stačí pro všechny platformy (PC, iOS, Android) + žádné schvalování v App Store / Google Play
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="2"> Protože musí platit za offline režim a push notifikace
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" value="3"> Protože jsou obecně pomalejší než nativní appky
+      </label>
+    </div>
+
+    <button id="check-btn" class="start-btn glow-btn">Zkontrolovat odpověď</button>
+    
+    <div id="result" style="margin-top: 30px; font-size: 1.2rem; min-height: 40px;"></div>
+
+    <div style="margin-top: 50px; text-align: center;">
+      <button class="start-btn glow-btn" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Zpět na přehled
+      </button>
+    </div>
+  </main>
+
+  <script src="js/shared.js"></script>
+  <script>
+    // Lokální logika pro tuto misi
+    const correctAnswer = 1; // index správné odpovědi (0-based)
+    const points = 130;
+    const missionId = 4;
+
+    document.getElementById('check-btn').addEventListener('click', () => {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      
+      if (!selected) {
+        document.getElementById('result').innerHTML = '<span style="color: #ff6b6b;">Vyber nějakou možnost!</span>';
+        return;
+      }
+
+      const userAnswer = parseInt(selected.value);
+      
+      if (userAnswer === correctAnswer) {
+        document.getElementById('result').innerHTML = '<span style="color: #39d353;">Správně! Jedna verze pro všechny platformy + rychlé nasazení bez app storů šetří obrovské náklady. +130 bodů 🔥</span>';
+        completeMission(missionId, points);
+        document.getElementById('check-btn').disabled = true;
+      } else {
+        document.getElementById('result').innerHTML = '<span style="color: #ff6b6b;">Špatně... Hlavní výhoda je v jedné verzi pro všechny zařízení a bez schvalování v obchodech s aplikacemi 🐛</span>';
+      }
+    });
+  </script>
+</body>
+</html>
